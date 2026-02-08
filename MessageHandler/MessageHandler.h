@@ -34,10 +34,8 @@ void MessageHandler::registerMessage(E* element)
     auto messageMapIt = mMessageMap.find(D::TYPE_NAME);
     if(messageMapIt == mMessageMap.end())
     {
-        MessageCallback callback = [element](Data* data)->bool{
-            D* typedData = static_cast<D*>(data);
-
-            return element->processMessage(typedData);
+        MessageCallback callback = [element](Data* data)->bool {
+            return element->processMessage(static_cast<D*>(data));
         };
 
         mMessageMap[D::TYPE_NAME] = callback;
