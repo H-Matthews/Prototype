@@ -1,7 +1,5 @@
 #include "MessageHandler.h"
 
-#include "Element.h"
-
 #include <iostream>
 
 std::optional<MessageHandler::MessageCallback> MessageHandler::getCallbackForMessage(

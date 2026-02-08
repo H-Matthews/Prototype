@@ -16,6 +16,8 @@ class Element
     public:
         Element();
 
+        virtual ~Element() {}
+
         virtual bool processDataMessage(Data* data);
 
         virtual void registerMessages();

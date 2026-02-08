@@ -1,2 +1,4 @@
 *.o
-main
+driver
+CMakeLists.txt
+build/
