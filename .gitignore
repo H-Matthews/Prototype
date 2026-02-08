@@ -1,4 +1,3 @@
 *.o
 driver
-CMakeLists.txt
 build/
