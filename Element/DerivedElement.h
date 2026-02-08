@@ -7,16 +7,16 @@ class DerivedData;
 // This Element Handles DerivedData
 class DerivedElement : public Element
 {
-    friend class MessageHandler;
+    friend class DataHandler;
 
     public:
         DerivedElement();
 
-        virtual void registerMessages() override;
+        virtual void registerData() override;
 
     private:
-        bool processMessage(DerivedData* derivedData);
+        bool processData(DerivedData* derivedData);
 
         // From Element
-        bool processMessage(VideoData* videoData) override;
+        bool processData(VideoData* videoData) override;
 };

@@ -1,4 +1,4 @@
-#include "MessageHandler.h"
+#include "DataHandler.h"
 #include "DerivedElement.h"
 #include "PictureData.h"
 #include "VideoData.h"
@@ -10,7 +10,7 @@
 int main()
 {
     auto derivedElement = std::make_unique<DerivedElement>();
-    derivedElement->registerMessages();
+    derivedElement->registerData();
 
     auto derivedData = std::make_unique<DerivedData>();
     auto pictureData = std::make_unique<PictureData>();
@@ -21,11 +21,11 @@ int main()
     dataVec.push_back(pictureData.get());
     dataVec.push_back(videoData.get());
 
-    bool isMessageProcessed = false;
+    bool isDataProcessed = false;
     for(auto data : dataVec)
     {
-        isMessageProcessed = derivedElement->processDataMessage(data);
-        std::cout << "Message Processed: " << std::boolalpha << isMessageProcessed << std::endl;
+        isDataProcessed = derivedElement->processIncomingData(data);
+        std::cout << "Message Processed: " << std::boolalpha << isDataProcessed << std::endl;
     }
 
 

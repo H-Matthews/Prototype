@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(INC_DIR
     ${PROJECT_SOURCE_DIR}/Data
     ${PROJECT_SOURCE_DIR}/Element
-    ${PROJECT_SOURCE_DIR}/MessageHandler
+    ${PROJECT_SOURCE_DIR}/DataHandler
 )
 
 # Define source / include files
@@ -21,8 +21,8 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/Element/DerivedElement.cpp
     ${PROJECT_SOURCE_DIR}/Element/Element.h
     ${PROJECT_SOURCE_DIR}/Element/Element.cpp
-    ${PROJECT_SOURCE_DIR}/MessageHandler/MessageHandler.h
-    ${PROJECT_SOURCE_DIR}/MessageHandler/MessageHandler.cpp
+    ${PROJECT_SOURCE_DIR}/DataHandler/DataHandler.h
+    ${PROJECT_SOURCE_DIR}/DataHandler/DataHandler.cpp
     ${PROJECT_SOURCE_DIR}/driver.cpp
 )
 

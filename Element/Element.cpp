@@ -1,6 +1,6 @@
 #include "Element.h"
 
-#include "MessageHandler.h"
+#include "DataHandler.h"
 #include "VideoData.h"
 #include "PictureData.h"
 
@@ -10,52 +10,55 @@
 #include <iostream>
 
 Element::Element() :
-    mMessageHandler(std::make_unique<MessageHandler>())
+    mDataHandler(std::make_unique<DataHandler>())
 {
-    registerMessages();
 }
 
-void Element::registerMessages()
+void Element::registerData()
 {
     // Register Messages
-    mMessageHandler->registerMessage<PictureData, Element>(this);
-    mMessageHandler->registerMessage<VideoData, Element>(this);
+    mDataHandler->registerData<PictureData, Element>(this);
+    mDataHandler->registerData<VideoData, Element>(this);
 }
 
-bool Element::processDataMessage(Data* data)
+bool Element::processIncomingData(Data* data)
 {
     const std::string& dataType = data->getType();
 
-    std::optional<MessageHandler::MessageCallback> messageCallback =
-        mMessageHandler->getCallbackForMessage(dataType);
+    std::optional<DataHandler::FunctionCallback> functionCallback =
+        mDataHandler->getCallbackForMessage(dataType);
 
-    if(messageCallback.has_value())
+    if(functionCallback.has_value())
     {
-        return messageCallback.value()(data);
+        return functionCallback.value()(data);
+    }
+    else
+    {
+        std::cout << "Dropping Data: " << dataType << std::endl;
     }
 
     return false;
 }
 
-bool Element::processMessage(PictureData* pictureData)
+bool Element::processData(PictureData* pictureData)
 {
     bool processed = false;
     if(pictureData)
     {
         processed = true;
-        std::cout << "Handled Message: " << pictureData->getType() << std::endl;
+        std::cout << "Handled Data: " << pictureData->getType() << std::endl;
     }
 
     return processed;
 }
 
-bool Element::processMessage(VideoData* videoData)
+bool Element::processData(VideoData* videoData)
 {
     bool processed = false;
     if(videoData)
     {
         processed = true;
-        std::cout << "Handled Message: " << videoData->getType() << std::endl;
+        std::cout << "Handled Data: " << videoData->getType() << std::endl;
     }
 
     return processed;

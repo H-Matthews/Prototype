@@ -2,7 +2,7 @@
 
 #include "DerivedData.h"
 #include "VideoData.h"
-#include "MessageHandler.h"
+#include "DataHandler.h"
 
 #include <iostream>
 
@@ -11,14 +11,14 @@ DerivedElement::DerivedElement() :
 {
 }
 
-void DerivedElement::registerMessages()
+void DerivedElement::registerData()
 {
-    mMessageHandler->registerMessage<DerivedData, DerivedElement>(this);
+    mDataHandler->registerData<DerivedData, DerivedElement>(this);
 
-    Element::registerMessages();
+    Element::registerData();
 }
 
-bool DerivedElement::processMessage(DerivedData* derivedData)
+bool DerivedElement::processData(DerivedData* derivedData)
 {
     bool processed = false;
     if(derivedData)
@@ -30,7 +30,7 @@ bool DerivedElement::processMessage(DerivedData* derivedData)
     return processed;
 }
 
-bool DerivedElement::processMessage(VideoData* videoData)
+bool DerivedElement::processData(VideoData* videoData)
 {
     if(videoData)
     {
@@ -38,5 +38,5 @@ bool DerivedElement::processMessage(VideoData* videoData)
             << " in DerivedElement" << std::endl;
     }
 
-    return Element::processMessage(videoData);
+    return Element::processData(videoData);
 }

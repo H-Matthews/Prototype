@@ -5,27 +5,27 @@
 class Data;
 class PictureData;
 class VideoData;
-class MessageHandler;
+class DataHandler;
 
 class Element
 {
     // Required in order to call processMessage
     // from the Handler
-    friend class MessageHandler;
+    friend class DataHandler;
 
     public:
         Element();
 
         virtual ~Element() {}
 
-        virtual bool processDataMessage(Data* data);
+        virtual bool processIncomingData(Data* data);
 
-        virtual void registerMessages();
-
-    protected:
-        virtual bool processMessage(PictureData* pictureData);
-        virtual bool processMessage(VideoData* videoData);
+        virtual void registerData();
 
     protected:
-        std::unique_ptr<MessageHandler> mMessageHandler;
+        virtual bool processData(PictureData* pictureData);
+        virtual bool processData(VideoData* videoData);
+
+    protected:
+        std::unique_ptr<DataHandler> mDataHandler;
 };
